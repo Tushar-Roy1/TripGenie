@@ -3649,3 +3649,76 @@ input::placeholder {
   background: #5543d8;
   transform: translateY(-2px);
 }
+
+/* =================================
+   TripGenie Mobile Layout Fix
+================================= */
+
+@media (max-width: 700px) {
+  /* Sidebar */
+  .sidebar {
+    width: 80px;
+    padding: 20px 10px;
+    box-sizing: border-box;
+  }
+
+  /* Main content */
+  .main-content {
+    width: calc(100% - 80px);
+    max-width: none;
+    margin-left: 80px;
+    padding: 20px 12px;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  /* Itinerary cards */
+  .day-activity-card {
+    width: 100%;
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .activity-card-content {
+    flex: 1;
+    width: 0;
+    min-width: 0;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  /* Activity controls */
+  .activity-card-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .activity-control-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+    flex: none !important;
+    gap: 7px;
+  }
+
+  .activity-control-group select {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  /* Delete button */
+  .activity-card-actions .remove-activity-button {
+    position: static !important;
+    align-self: flex-end;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    flex: none;
+  }
+}
