@@ -2464,10 +2464,13 @@ input::placeholder {
   }
 }
 
-@media (max-width: 600px) {
+
+@media (max-width: 767px){
   .activity-card-actions {
+    display: flex;
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
   }
 
   .activity-control-group {
@@ -2476,9 +2479,15 @@ input::placeholder {
   }
 
   .activity-card-actions .remove-activity-button {
-    align-self: flex-start;
+    position: static !important;
+    align-self: flex-end;
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+    margin: 0;
   }
 }
+
 
 /* Incomplete schedule notification */
 
