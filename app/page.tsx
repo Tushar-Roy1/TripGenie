@@ -20,8 +20,9 @@ import {
   Users,
   Save,
   Printer,
-  Share2,
-  Trash2,
+  Menu,
+    X,
+    FileText
 } from "lucide-react";
 
 const TripMap = dynamic(
@@ -105,6 +106,7 @@ export default function Home() {
   const [activityDurations, setActivityDurations] =
   useState<Record<string, number>>({});
   const [editingTripId, setEditingTripId] = useState<string | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 // Restore saved itinerary when opening from My Trips
 useEffect(() => {
   const params = new URLSearchParams(window.location.search);
@@ -335,52 +337,103 @@ const updatedTrips = editingTripId
     <main className="app-shell">
 
       {/* Sidebar */}
-      <aside className="sidebar">
-        <a className="brand" href="/">
-          <span className="brand-icon">
-            <Compass size={23} />
-          </span>
-          <span>TripGenie</span>
-        </a>
+      
+<aside className={`sidebar ${isMobileMenuOpen ? "mobile-open" : ""}`}>
 
-        <p className="nav-label">WORKSPACE</p>
+  {/* Mobile sidebar close button */}
+  <button
+    type="button"
+    className="mobile-sidebar-close"
+    onClick={() => setIsMobileMenuOpen(false)}
+    aria-label="Close navigation menu"
+  >
+    <X size={22} />
+  </button>
 
-        <a className="nav-item active" href="#planner">
-          <Plus size={18} />
-          Plan a trip
-        </a>
+  {/* Brand */}
+  <a
+    className="brand"
+    href="/"
+    onClick={() => setIsMobileMenuOpen(false)}
+  >
+    <span className="brand-icon">
+      <Compass size={23} />
+    </span>
+    <span>TripGenie</span>
+  </a>
 
-        <a className="nav-item" href="/my-trips">
-          <Map size={18} />
-          My trips
-        </a>
+  {/* Navigation */}
+  <p className="nav-label">WORKSPACE</p>
 
-        <a className="nav-item" href="#inspiration">
-          <Sparkles size={18} />
-          Inspiration
-        </a>
+  <a
+    className="nav-item active"
+    href="#planner"
+    onClick={() => setIsMobileMenuOpen(false)}
+  >
+    <Plus size={18} />
+    Plan a trip
+  </a>
 
-        <div className="sidebar-bottom">
-          <div className="upgrade-card">
-            <Sparkles size={20} />
-            <strong>Your next adventure awaits</strong>
-            <p>Create a personalized itinerary with AI.</p>
-          </div>
+  <a
+    className="nav-item"
+    href="/my-trips"
+    onClick={() => setIsMobileMenuOpen(false)}
+  >
+    <Map size={18} />
+    My trips
+  </a>
+<a
+  className="nav-item"
+  href="/TripGenie_User_Guide_and_Features.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <FileText size={18} />
+  User Guide
+</a>
+  <a
+    className="nav-item"
+    href="#inspiration"
+    onClick={() => setIsMobileMenuOpen(false)}
+  >
+    <Sparkles size={18} />
+    Inspiration
+  </a>
 
-          <div className="profile">
-            <div className="avatar">T</div>
-            <div>
-              <strong>Traveler</strong>
-              <p>Free plan</p>
-            </div>
-          </div>
-        </div>
-      </aside>
+  {/* Sidebar bottom */}
+  <div className="sidebar-bottom">
+
+    <div className="upgrade-card">
+      <Sparkles size={20} />
+      <strong>Your next adventure awaits</strong>
+      <p>Create a personalized itinerary with AI.</p>
+    </div>
+
+    <div className="profile">
+      <div className="avatar">T</div>
+      <div>
+        <strong>Traveler</strong>
+        <p>Free plan</p>
+      </div>
+    </div>
+
+  </div>
+</aside>
+
+
 
       {/* Main content */}
       <section className="main-content" id="planner">
 
         <header className="topbar">
+          <button
+  type="button"
+  className="mobile-menu-button"
+  onClick={() => setIsMobileMenuOpen(true)}
+  aria-label="Open navigation menu"
+>
+  <Menu size={24} />
+</button>
           <div>
             <p className="eyebrow">
               YOUR PERSONAL TRAVEL PLANNER
